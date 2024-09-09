@@ -1,5 +1,7 @@
 # Quarkus issue reproduction: quarkus-opentelemetry clears MDC context of ManagedExecutor thread
 
+[quarkusio/quarkus#43134](https://github.com/quarkusio/quarkus/issues/43134)
+
 Project to reproduce an issue observed in a Quarkus based project. In short: the behaviour observed is that for logging 
 statements executed on a ManagedExecutor thread, the MDC (traceId) context is not available. 
 
