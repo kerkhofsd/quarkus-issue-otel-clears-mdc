@@ -14,6 +14,7 @@ quarkus ext add quarkus-opentelemetry
 
 * See [GreetingResource](./src/main/java/org/acme/GreetingResource.java) for the code.
 * See [application.properties](./src/main/resources/application.properties) for the configuration.
+  * The mdc.traceId is added to logging statements using the `quarkus.log.console.format` configuration. 
 
 ## Running reproduction
 
