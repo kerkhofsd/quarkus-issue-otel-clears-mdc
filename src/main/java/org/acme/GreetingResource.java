@@ -28,11 +28,7 @@ public class GreetingResource {
             // depending on the timing at which OpenTelemetryUtil#clearMdcData(...) is executed on the main thread
             log.infof("hello() from ManagedExecutor before sleep [traceId=%s]", Span.current().getSpanContext().getTraceId());
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            executeWorkOnWorkerThread();
 
             // To illustrate the behaviour, a second logging statement is added after a sleep (simulating work executed
             // on the ManagedExecutor thread). In this case, the mdc.traceId is most likely not available anymore.
@@ -40,5 +36,13 @@ public class GreetingResource {
         });
 
         return "Hello from Quarkus REST";
+    }
+
+    private void executeWorkOnWorkerThread() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
